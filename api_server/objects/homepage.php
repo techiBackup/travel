@@ -21,6 +21,8 @@ class Homepage{
     //read Navbar
     function read_destination(){
      
+
+    
         // select all query
         $query = "SELECT
                    id,name,description,price,category_id
@@ -29,6 +31,7 @@ class Homepage{
                     created DESC";
         // prepare query statement
         $stmt = $this->conn->prepare($query);
+     
      
         // execute query
         $stmt->execute();
