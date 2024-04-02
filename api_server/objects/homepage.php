@@ -53,7 +53,22 @@ class Homepage{
         return $stmt;
     }
 
-
+    function read_hotel(){
+     
+        // select all query
+        $query = "SELECT
+                   id,name,description,price,category_id
+                FROM PRODUCTS
+                ORDER BY
+                    created DESC";
+        // prepare query statement
+        $stmt = $this->conn->prepare($query);
+     
+        // execute query
+        $stmt->execute();
+     
+        return $stmt;
+    }
     // read products
     function read(){
      

@@ -122,6 +122,31 @@ function getHomepageData() {
         $homepage_arr["blog"] = [];
     }
 
+    $hotel = $homepage->read_hotel();
+    $hotel_num = $hotel->rowCount();
+
+    if($hotel_num > 0) {
+        // banner array
+        $homepage_arr["hotels"]=array();
+
+        // retrieve banner contents
+        while ($row = $hotel->fetch(PDO::FETCH_ASSOC)) {
+            extract($row);
+
+            $hoteL_item=array(
+                "id" => $id,
+                "name" => $name,
+                "description" => html_entity_decode($description),
+                "price" => $price,
+            );
+
+            array_push($homepage_arr["hotel"], $hoteL_item);
+        }
+    } else {
+        // No banner data found
+        $homepage_arr["hotel"] = [];
+    }
+
     // Return the homepage data
     return $homepage_arr;
 }
